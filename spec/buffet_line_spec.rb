@@ -34,4 +34,23 @@ RSpec.describe BuffetLine do
     expect(customer_1.plate[:sides].first.name).to eq('Mashed Potatoes')
     expect(customer_1.plate[:desserts].first.name).to eq('Apple Pie')
   end
+
+  it 'makes the last customer in a line of more than 4 customers say "Ohp! Let me scootch by ya for the Ranch..."' do
+      line = BuffetLine.new
+
+      # Adding five customers
+      customer_1 = Customer.new('John')
+      customer_2 = Customer.new('Jane')
+      customer_3 = Customer.new('Joe')
+      customer_4 = Customer.new('Jack')
+      customer_5 = Customer.new('Jill')
+
+      line.add_customer(customer_1)
+      line.add_customer(customer_2)
+      line.add_customer(customer_3)
+      line.add_customer(customer_4)
+      line.add_customer(customer_5)
+
+      expect(customer_5.say_ohp).to eq("Ohp! Let me scootch by ya for the Ranch...")
+    end
 end
