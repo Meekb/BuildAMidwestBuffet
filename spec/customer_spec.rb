@@ -1,6 +1,8 @@
 require 'rspec'
-require './lib/customer'
+require './lib/buffet_dessert'
 require './lib/buffet_dish'
+require './lib/buffet_side'
+require './lib/customer'
 
 RSpec.describe Customer do
   it 'has a name' do
@@ -8,15 +10,15 @@ RSpec.describe Customer do
     expect(customer.name).to eq('John')
   end
 
-  xit 'can say "Ohp! Let me scootch by ya for the Ranch"' do
+  it 'can say "Ohp! Let me scootch by ya for the Ranch..."' do
     customer = Customer.new('John')
     expect(customer.say_ohp).to eq('Ohp! Let me scootch by ya for the Ranch...')
   end
 
-  xit 'can fill their plate with dishes, sides, and desserts' do
+  it 'can fill their plate with dishes, sides, and desserts' do
      customer = Customer.new('Jane')
 
-     customer.add_dish(BuffetDish.new('Chicken Fingers', 'Medium'))
+     customer.add_dish(BuffetDish.new('Chicken Fingers', portion_size: 'Mound'))
      customer.add_side(BuffetSide.new('Baked Beans'))
      customer.add_dessert(BuffetDessert.new('Ice Cream'))
 
