@@ -17,11 +17,11 @@ Follow the errors that your test provides until the test passes. Unskip the next
 
 ## Suggested Order
 
-* `customer_spec.rb`
 * `buffet_dish_spec.rb`
 * `buffet_side_spec.rb`
 * `buffet_dessert_spec.rb`
 * `buffet_spec.rb`
+* `customer_spec.rb`
 * `buffet_line_spec.rb`
 
 ## Add to the Buffet!
