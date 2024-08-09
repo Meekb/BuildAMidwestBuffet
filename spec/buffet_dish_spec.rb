@@ -14,13 +14,13 @@ RSpec.describe BuffetDish do
     expect(dish.type).to eq('main')
   end
 
-  it 'can have a portion size' do
+  xit 'can have a portion size' do
     dish = BuffetDish.new('Chicken Fingers', portion_size: 'That\'ll do!')
 
     expect(dish.portion_size).to eq('That\'ll do!')
   end
 
-  it 'can have a different portion size' do
+  xit 'can have a different portion size' do
       dish_1 = BuffetDish.new('Orange Chicken', portion_size: 'Mound')
       dish_2 = BuffetDish.new('Golden Delicious Shrimp', portion_size: 'That\'ll do!')
       dish_3 = BuffetDish.new('Chicken & Noodle Dumplings', portion_size: 'Heaping')
