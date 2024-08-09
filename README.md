@@ -30,6 +30,7 @@ Follow the errors that your test provides until the test passes. Unskip the next
 
 * [How to use RSpec without Rails](https://gist.github.com/ap2322/d8081e38d448acccf2cdc25308be565f) for these exercises.
 
-### Grow the Buffet!
+### Add to the Buffet!
 
 Can you add new classes to the repository? How about a BuffetManager?
+If Customer.samples_food,  BufferManager.removes_customer...
