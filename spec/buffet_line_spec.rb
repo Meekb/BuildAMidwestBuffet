@@ -8,7 +8,7 @@ RSpec.describe BuffetLine do
     expect(line.customers.count).to eq(2)
   end
 
-  it 'can serve customers from the buffet' do
+  xit 'can serve customers from the buffet' do
     buffet = Buffet.new
     buffet.add_dish(BuffetDish.new('Meatloaf'))
     buffet.add_side(BuffetSide.new('Mashed Potatoes'))

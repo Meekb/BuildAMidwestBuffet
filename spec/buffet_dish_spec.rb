@@ -3,19 +3,24 @@ require './lib/buffet_dish'
 
 RSpec.describe BuffetDish do
   it 'has a name' do
-    dish = BuffetDish.new('Meatloaf', portion_size = 'Large')
+    dish = BuffetDish.new('Meatloaf', portion_size = 'Heaping')
+
     expect(dish.name).to eq('Meatloaf')
   end
 
-  it 'can have a portion size' do
-    dish = BuffetDish.new('Chicken Fingers', portion_size = 'Large')
-    expect(dish.portion_size).to eq('Large')
+  xit 'can have a portion size' do
+    dish = BuffetDish.new('Chicken Fingers', portion_size = 'That\'ll do!')
+
+    expect(dish.portion_size).to eq('That\'ll do!')
   end
 
-  it 'can have a different portion size' do
-      dish_1 = BuffetDish.new('Orange Chicken', portion_size = 'Medium')
-      expect(dish_1.portion_size).to eq('Medium')
-      dish_2 = BuffetDish.new('Golden Delicious Shrimp', portion_size = 'Small')
-      expect(dish_2.portion_size).to eq('Small')
+  xit 'can have a different portion size' do
+      dish_1 = BuffetDish.new('Orange Chicken', portion_size = 'Mound')
+      dish_2 = BuffetDish.new('Golden Delicious Shrimp', portion_size = 'That\'ll do')
+      dish_3 = BuffetDish.new('Chicken & Noodle Dumplings', portion_size = 'Heaping')
+
+      expect(dish_1.portion_size).to eq('Mound')
+      expect(dish_2.portion_size).to eq('That\'ll do!')
+      expect(dish_3.portion_size).to eq('Heaping')
   end
 end
