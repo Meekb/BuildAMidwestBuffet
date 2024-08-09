@@ -1,3 +1,11 @@
+require 'rspec'
+require './lib/buffet'
+require './lib/buffet_dessert'
+require './lib/buffet_dish'
+require './lib/buffet_line'
+require './lib/buffet_side'
+require './lib/customer'
+
 RSpec.describe BuffetLine do
   it 'can add customers to the line' do
     line = BuffetLine.new
@@ -8,11 +16,11 @@ RSpec.describe BuffetLine do
     expect(line.customers.count).to eq(2)
   end
 
-  xit 'can serve customers from the buffet' do
+  it 'can serve customers from the buffet' do
     buffet = Buffet.new
-    buffet.add_dish(BuffetDish.new('Meatloaf'))
+    buffet.add_dish(BuffetDish.new('Meatloaf', portion_size: 'Heaping'))
     buffet.add_side(BuffetSide.new('Mashed Potatoes'))
-    buffet.add_dessert(BuffetDessert.new('Apple Pie'))
+    buffet.add_dessert(BuffetDessert.new('Apple Pie', classic_midwest: true))
 
     line = BuffetLine.new
     customer = Customer.new('John')

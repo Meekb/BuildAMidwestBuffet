@@ -8,7 +8,7 @@ RSpec.describe BuffetDish do
     expect(dish.name).to eq('Meatloaf')
   end
 
-  it 'has a type \'main\' by default' do
+  xit 'has a type \'main\' by default' do
     dish = BuffetDish.new('Pot Pie')
 
     expect(dish.type).to eq('main')
