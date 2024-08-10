@@ -8,7 +8,8 @@ RSpec.describe BuffetSide do
   end
 
   xit 'has a type \'side\'  by default' do
-    side = BuffetSide.new('Mashed Potatoes')
+    side = BuffetSide.new('Fried Okra')
+    expect(side.name).to eq('Fried Okra')
     expect(side.type).to eq('side')
   end
 
