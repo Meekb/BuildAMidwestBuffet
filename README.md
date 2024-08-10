@@ -3,7 +3,9 @@
 A collection of exercises to practice Ruby, and test-driven design (TDD). The project serves as both a practical example of writing and organizing Ruby tests and as a playful nod to Midwest culture, where buffet lines are a beloved tradition.
 
 ## How to Run
-Clone down repo
+Fork this repo, then clone your forked copy to your machine. 
+
+`cd` into the directory for the project
 
 Create a class file in `lib` for each class test in the `spec` directory.
 
