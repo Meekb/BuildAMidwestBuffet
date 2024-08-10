@@ -22,16 +22,15 @@ The classes interact as you progress. Follow the order below to build a solid fo
 * `buffet_dish_spec.rb`
 * `buffet_side_spec.rb`
 * `buffet_dessert_spec.rb`
-* `buffet_spec.rb`
 * `customer_spec.rb`
-* `buffet_line_spec.rb`
+* `buffet_spec.rb`
 
 ## Add to the Buffet!
 
 Can you add new classes to the repository? 
 How about a BuffetManager?  
 Can a Customer `sample_food` from the `buffet`?  
-Does the `manager.eject_customer` if `customer.sample_food` from the `buffet_line`?
+Does the `manager.eject_customer` if `customer.sample_food` while in the `buffet.line`?
 
 ## Contributing
 Contributions are welcome! If you have ideas for additional tests or improvements to the existing ones, feel free to submit a pull request. Whether it's adding more scenarios, edge-cases, or optimizing the existing tests, your contributions help make this project more robust and comprehensive.
