@@ -49,7 +49,7 @@ RSpec.describe Buffet do
     expect(buffet.desserts[1].classic_midwest?).to be false
   end
 
-  xit 'has a line of customers' do
+  xit 'has a buffet line' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     expect(buffet.line).to be_a(Hash)
   end
@@ -83,7 +83,7 @@ RSpec.describe Buffet do
     expect(buffet.line_count).to eq("There are no customers in the buffet line.")
   end
 
-  xit 'can serve customers' do
+  xit 'can serve customers that are in the buffet line' do
      buffet = Buffet.new(name: 'Bigo Buffet')
 
      buffet.add_dish(BuffetDish.new('Ribs', portion_size: 'Mound'))
@@ -110,7 +110,7 @@ RSpec.describe Buffet do
      expect(customer_2.plate[:dishes]).to be_empty
   end
 
- xit 'removes the customer from the line after serving' do
+ xit 'removes the customer from the buffet line after serving them' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     buffet.add_dish(BuffetDish.new('Ribs', portion_size: 'Mound'))
     buffet.add_dish(BuffetDish.new('Meatloaf', portion_size: 'Mound'))
@@ -145,7 +145,7 @@ RSpec.describe Buffet do
     expect(buffet.line[:customers].length).to eq(0)
  end
 
- xit 'makes the last customer in the line say "Ohp! Let me scootch by ya for the Ranch..." if the line has 4 or more customers when customer gets served' do
+ xit 'makes the last customer in the line say "Ohp! Let me scootch by ya for the Ranch..." if the line has 4 or more customers when a customer gets served' do
       buffet = Buffet.new(name: 'Bigo Buffet')
       customer_1 = Customer.new('Markie')
       customer_2 = Customer.new('Junior')
