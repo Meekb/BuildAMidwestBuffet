@@ -28,9 +28,9 @@ class Customer
     end
 
     def say_ohp
+        'Ohp! Let me scootch by ya for the Ranch...'
         @ohp_count += 1
         drown_plate_in_ranch
-        return 'Ohp! Let me scootch by ya for the Ranch...'
     end
 
     def add_dish(dish)
