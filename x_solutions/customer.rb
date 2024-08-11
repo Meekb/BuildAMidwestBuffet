@@ -2,7 +2,7 @@ class Customer
     attr_reader :name,
                 :plate,
                 :ohp_count
-                :plate_drowned_in_ranch
+                :drowned_in_ranch
 
     def initialize(name)
         @name = name
@@ -10,17 +10,21 @@ class Customer
             dishes: [],
             sides: [],
             desserts: [],
-            plate_drowned_in_ranch: false,
+            drowned_in_ranch: false,
         }
         @ohp_count = 0
     end
 
-    def drown_plate_in_ranch(val)
-        @plate_drowned_in_ranch = val
+    def inspect
+        puts "<Name: #{name}, Plate: #{plate}, Ohp_Count: #{ohp_count}>"
+    end
+
+    def drown_plate_in_ranch
+        @plate[:drowned_in_ranch] = true
     end
 
     def plate_drowned?
-        @plate_drowned_in_ranch
+        @plate[:drowned_in_ranch]
     end
 
     def say_ohp
