@@ -15,7 +15,7 @@ RSpec.describe Customer do
     expect(customer.plate).to be_a(Hash)
   end
 
-  xit 'has a plate that tracks dishes, sides, and desserts' do
+  xit 'has a plate with dishes, sides, and desserts' do
     customer = Customer.new('Merle')
     expect(customer.plate[:dishes]).to be_an(Array)
     expect(customer.plate[:sides]).to be_an(Array)
@@ -34,7 +34,7 @@ RSpec.describe Customer do
     expect(customer.plate[:desserts].count).to eq(1)
  end
 
-  xit 'the plate knows if it has been drowned in Ranch' do
+  xit 'knows if the plate has been drowned in Ranch' do
     customer = Customer.new('Barb')
     expect(customer.plate_drowned?).to be false
   end
