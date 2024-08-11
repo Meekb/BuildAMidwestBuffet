@@ -1,8 +1,7 @@
 class BuffetSide
-    attr_reader :name, :comfort_food
+    attr_reader :name
 
-    def initialize(name, comfort_food: false)
+    def initialize(name)
         @name = name
-        @comfort_food = comfort_food
     end
 end
