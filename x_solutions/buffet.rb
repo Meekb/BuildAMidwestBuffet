@@ -40,14 +40,28 @@ class Buffet
         end
     end
 
-    def serve(customer)
-        if @line[:customers].length > 4
+    def line_count
+        return 'There are no customers in the buffet line.' if @line[:customers].empty?
+        @line[:customers].length
+    end
+
+    def inspect
+        @line[:customers].each do |cust|
+            cust.inspect
+        end
+    end
+
+    def serve(cust)
+        if @line[:customers].length >= 4
             last_in_line = @line[:customers].last
             last_in_line.say_ohp
+            last_in_line.drown_plate_in_ranch
+            @line[:customers].delete(last_in_line)
         end
-        customer.add_dish(@dishes.shift)
-        customer.add_side(@sides.shift)
-        customer.add_dessert(@desserts.shift)
-        @line[:customers].delete(customer)
+        cust.add_dish(@dishes.shift)
+        cust.add_side(@sides.shift)
+        cust.add_dessert(@desserts.shift)
+        @line[:customers].delete(cust)
+        inspect
     end
 end
