@@ -1,4 +1,4 @@
-# Ruby & Ranch: Building a Midwest Buffet
+# Ruby & Ranch: Build a Midwest Buffet
 
 A collection of exercises to practice Ruby, and test-driven design (TDD). The project serves as both a practical example of writing and organizing Ruby tests and as a playful nod to Midwest culture, where buffet lines are a beloved tradition.
 
