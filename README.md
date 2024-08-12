@@ -34,10 +34,11 @@ The classes interact as you progress. Follow the order below to build a solid fo
 
 ## Add to the Buffet!
 
-Can you add new classes to the repository? 
+Can you add new classes and functionality to the repository? 
 How about a BuffetManager?  
 Can a Customer `sample_food` from the `buffet`?  
-Does the `manager.eject_customer` if `customer.sample_food` while in the `buffet.buffet_line`?
+Can the BuffetManager `eject_customer`?
+What happens if `customer.sample_food` while in the `buffet.buffet_line`?
 
 ## Contributing
 Contributions are welcome! If you have ideas for additional tests or improvements to the existing ones, feel free to submit a pull request. Whether it's adding more scenarios, edge-cases, or optimizing the existing tests, your contributions help make this project more robust and comprehensive.
