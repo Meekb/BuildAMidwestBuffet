@@ -23,4 +23,40 @@ RSpec.describe BuffetSide do
     expect(side_2.name).to eq('Fried Ravioli')
     expect(side_2.comfort_food?).to be false
   end
+
+  xit 'starts with a count of 20' do
+    side = BuffetSide.new('Fried Okra')
+    expect(side.name).to eq('Fried Okra')
+    expect(side.count?).to eq(20)
+  end
+
+  xit 'can decrease the count' do
+    side = BuffetSide.new('Fried Okra')
+    expect(side.name).to eq('Fried Okra')
+    expect(side.count?).to eq(20)
+    expect(side.decrease_count).to eq(15)
+  end
+
+  xit 'can run out of the side' do
+    side = BuffetSide.new('Fried Okra')
+    expect(side.name).to eq('Fried Okra')
+    expect(side.count?).to eq(20)
+    side.decrease_count
+    side.decrease_count
+    side.decrease_count
+    side.decrease_count
+    expect(side.count?).to eq(0)
+  end
+
+  xit 'can can be refilled' do
+    side = BuffetSide.new('Fried Okra')
+    expect(side.name).to eq('Fried Okra')
+    side.decrease_count
+    side.decrease_count
+    side.decrease_count
+    side.decrease_count
+    expect(side.count?).to eq(0)
+    side.refill_side
+    expect(side.count?).to eq(20)
+  end
 end
