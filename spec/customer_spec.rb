@@ -32,17 +32,11 @@ RSpec.describe Customer do
     expect(customer.plate[:dishes].count).to eq(1)
     expect(customer.plate[:sides].count).to eq(1)
     expect(customer.plate[:desserts].count).to eq(1)
-  end
+ end
 
   xit 'knows if the plate has been drowned in Ranch' do
     customer = Customer.new('Barb')
     expect(customer.plate_drowned?).to be false
-  end
-
-  xit 'can drown the plate in Ranch' do
-    customer = Customer.new('Barb')
-    customer.drown_plate_in_ranch
-    expect(customer.plate_drowned?).to be true
   end
 
   xit 'can say "Ohp! Let me scootch by ya for the Ranch..."' do
