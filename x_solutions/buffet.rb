@@ -50,14 +50,14 @@ class Buffet
     def serve(cust)
         if line_report >= 4
             last_in_line = @buffet_line.last_in_line
-            puts "LAST: #{last_in_line}"
             last_in_line.say_ohp
             last_in_line.drown_plate_in_ranch
         end
+
         cust.add_dish(@dishes.shift)
         cust.add_side(@sides.shift)
         cust.add_dessert(@desserts.shift)
         decrease_line(cust)
-        @buffet_line.inspect
     end
+    
 end

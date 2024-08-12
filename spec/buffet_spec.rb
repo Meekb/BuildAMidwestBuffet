@@ -12,12 +12,12 @@ RSpec.describe Buffet do
     expect(buffet.name).to eq('The Buffet Depot')
   end
 
-  xit 'can have a different name' do
+  it 'can have a different name' do
       buffet = Buffet.new(name: 'Golden Corral')
       expect(buffet.name).to eq('Golden Corral')
   end
 
-  xit 'can have a lot of dishes' do
+  it 'can have a lot of dishes' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     buffet.add_dish(BuffetDish.new('Meatloaf', portion_size: 'Heaping'))
     buffet.add_dish(BuffetDish.new('Pulled Pork', portion_size: 'Mound'))
@@ -28,7 +28,7 @@ RSpec.describe Buffet do
     expect(buffet.dishes[0].portion_size).to eq('Heaping')
   end
 
-  xit 'can have many sides' do
+  it 'can have many sides' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     buffet.add_side(BuffetSide.new('Southern Bakes Mac & Cheese', comfort_food: true))
     buffet.add_side(BuffetSide.new('Coleslaw'))
@@ -38,7 +38,7 @@ RSpec.describe Buffet do
     expect(buffet.sides[1].comfort_food?).to be false
   end
 
-  xit 'can have a wide array of desserts' do
+  it 'can have a wide array of desserts' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     buffet.add_dessert(BuffetDessert.new('Ambrosia Fluff', classic_midwest: true))
     buffet.add_dessert(BuffetDessert.new('Chocolate Pudding'))
@@ -50,12 +50,26 @@ RSpec.describe Buffet do
     expect(buffet.desserts[1].classic_midwest?).to be false
   end
 
-  xit 'has a buffet line' do
+  it 'has a buffet line' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     expect(buffet.buffet_line).to be_an_instance_of(BuffetLine)
   end
 
-  xit 'can increase and decrease the buffet line' do
+  it 'reports the number of customers in line' do
+    buffet = Buffet.new(name: 'Bigo Buffet')
+    customer_1 = Customer.new('Tammy')
+    customer_2 = Customer.new('Carl')
+
+    buffet.buffet_line.add_customer(customer_1)
+    buffet.buffet_line.add_customer(customer_2)
+    expect(buffet.line_report).to eq(2)
+
+    buffet.buffet_line.remove_customer(customer_1)
+    buffet.buffet_line.remove_customer(customer_2)
+    expect(buffet.line_report).to eq("No wait time at the buffet, folks!")
+  end
+
+  it 'can increase and decrease the number of customers in the buffet line' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     customer_1 = Customer.new('Tammy')
     customer_2 = Customer.new('Carl')
@@ -69,7 +83,7 @@ RSpec.describe Buffet do
     expect(buffet.line_report).to eq("No wait time at the buffet, folks!")
   end
 
-  xit 'serves customers that are in the buffet line' do
+  it 'serves customers that are in the buffet line' do
      buffet = Buffet.new(name: 'Bigo Buffet')
 
      buffet.add_dish(BuffetDish.new('Ribs', portion_size: 'Mound'))
@@ -96,7 +110,7 @@ RSpec.describe Buffet do
      expect(customer_2.plate[:dishes]).to be_empty
   end
 
- xit 'removes the customer from the buffet line after serving them' do
+ it 'removes the customer from the buffet line after serving them' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     buffet.add_dish(BuffetDish.new('Ribs', portion_size: 'Mound'))
     buffet.add_dish(BuffetDish.new('Meatloaf', portion_size: 'Mound'))
@@ -131,7 +145,7 @@ RSpec.describe Buffet do
     expect(buffet.line_report).to eq("No wait time at the buffet, folks!")
  end
 
- xit 'makes the last customer in the line say "Ohp! Let me scootch by ya for the Ranch..." if the line has 4 or more customers when a customer gets served' do
+ it 'makes the last customer in the line say "Ohp! Let me scootch by ya for the Ranch..." if the line has 4 or more customers when a customer gets served' do
       buffet = Buffet.new(name: 'Bigo Buffet')
       customer_1 = Customer.new('Markie')
       customer_2 = Customer.new('Junior')
@@ -153,7 +167,7 @@ RSpec.describe Buffet do
       expect(customer_5.ohp_count).to eq(1)
   end
 
-  xit 'makes the customer who said "Ohp!" drown their plate in Ranch' do
+  it 'makes the customer who said "Ohp!" drown their plate in Ranch' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     customer_1 = Customer.new('Markie')
     customer_2 = Customer.new('Junior')
@@ -170,9 +184,9 @@ RSpec.describe Buffet do
     buffet.serve(customer_1)
     expect(customer_5.ohp_count).to eq(1)
     expect(customer_5.plate_drowned?).to be true
-end
+  end
 
-  xit 'removes the customer from the line when they drown their plate in ranch' do
+  it 'removes the customer from the line when they drown their plate in ranch' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     buffet.add_dish(BuffetDish.new('Ribs', portion_size: 'Mound'))
     buffet.add_side(BuffetSide.new('Fried Okra'))
@@ -201,5 +215,5 @@ end
     buffet.serve(customer_2)
     expect(customer_5.ohp_count).to eq(1)
     expect(buffet.line_report).to eq(2)
- end
+  end
 end
