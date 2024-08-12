@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/buffet'
 require './lib/buffet_dish'
+require './lib/buffet_line'
 require './lib/buffet_side'
 require './lib/buffet_dessert'
 require './lib/customer'
@@ -51,44 +52,29 @@ RSpec.describe Buffet do
 
   xit 'has a buffet line' do
     buffet = Buffet.new(name: 'Bigo Buffet')
-    expect(buffet.line).to be_a(Hash)
+    expect(buffet.buffet_line).to be_an_instance_of(BuffetLine)
   end
 
-  xit 'can add customers to the buffet line' do
-      buffet = Buffet.new(name: 'Bigo Buffet')
-      customer_1 = Customer.new('John')
-      customer_2 = Customer.new('Jane')
-      buffet.add_customer(customer_1)
-      buffet.add_customer(customer_2)
-      expect(buffet.line[:customers].count).to eq(2)
-  end
-
-  xit 'can report how many customers are in the buffet line' do
+  xit 'can increase and decrease the buffet line' do
     buffet = Buffet.new(name: 'Bigo Buffet')
-    buffet.add_dish(BuffetDish.new('Ribs', portion_size: 'Mound'))
-    buffet.add_side(BuffetSide.new('Fried Okra'))
-    buffet.add_dessert(BuffetDessert.new('Blackberry Cobbler', classic_midwest: true))
-    customer_1 = Customer.new('LaDonna')
-    buffet.add_customer(customer_1)
-    customer_2 = Customer.new('Harold')
-    buffet.add_customer(customer_2)
-    expect(buffet.line_count).to eq(2)
+    customer_1 = Customer.new('Tammy')
+    customer_2 = Customer.new('Carl')
+
+    buffet.increase_line(customer_1)
+    buffet.increase_line(customer_2)
+    expect(buffet.line_report).to eq(2)
+
+    buffet.decrease_line(customer_1)
+    buffet.decrease_line(customer_2)
+    expect(buffet.line_report).to eq("No wait time at the buffet, folks!")
   end
 
-  xit 'says "There are no customers in the buffet line." if the line has no customers' do
-    buffet = Buffet.new(name: 'Bigo Buffet')
-    buffet.add_dish(BuffetDish.new('Ribs', portion_size: 'Mound'))
-    buffet.add_side(BuffetSide.new('Fried Okra'))
-    buffet.add_dessert(BuffetDessert.new('Blackberry Cobbler', classic_midwest: true))
-    expect(buffet.line_count).to eq("There are no customers in the buffet line.")
-  end
-
-  xit 'can serve customers that are in the buffet line' do
+  xit 'serves customers that are in the buffet line' do
      buffet = Buffet.new(name: 'Bigo Buffet')
 
      buffet.add_dish(BuffetDish.new('Ribs', portion_size: 'Mound'))
      buffet.add_dish(BuffetDish.new('Meatloaf', portion_size: 'Mound'))
-     
+
      buffet.add_side(BuffetSide.new('Fried Okra'))
      buffet.add_side(BuffetSide.new('Southern Baked Mac & Cheese'))
 
@@ -97,8 +83,8 @@ RSpec.describe Buffet do
 
      customer_1 = Customer.new('Karen')
      customer_2 = Customer.new('Rosco')
-     buffet.add_customer(customer_1)
-     buffet.add_customer(customer_2)
+     buffet.increase_line(customer_1)
+     buffet.increase_line(customer_2)
      buffet.serve(customer_1)
 
      expect(customer_1.plate[:dishes].first.name).to eq('Ribs')
@@ -116,7 +102,7 @@ RSpec.describe Buffet do
     buffet.add_dish(BuffetDish.new('Meatloaf', portion_size: 'Mound'))
     buffet.add_dish(BuffetDish.new('Chicken Fingers', portion_size:  "That'll do!"))
     buffet.add_dish(BuffetDish.new('Chicken & Dumplins', portion_size: 'Mound'))
-     
+
     buffet.add_side(BuffetSide.new('Fried Okra'))
     buffet.add_side(BuffetSide.new('Southern Baked Mac & Cheese', comfort_food: true))
     buffet.add_side(BuffetSide.new('Coleslaw'))
@@ -130,19 +116,19 @@ RSpec.describe Buffet do
     customer_1 = Customer.new('Jerrilyn')
     customer_2 = Customer.new('Daryl')
     customer_3 = Customer.new('Richey')
-    buffet.add_customer(customer_1)
-    buffet.add_customer(customer_2)
-    buffet.add_customer(customer_3)
-    expect(buffet.line[:customers].length).to eq(3)
+    buffet.increase_line(customer_1)
+    buffet.increase_line(customer_2)
+    buffet.increase_line(customer_3)
+    expect(buffet.line_report).to eq(3)
 
     buffet.serve(customer_1)
-    expect(buffet.line[:customers].length).to eq(2)
+    expect(buffet.line_report).to eq(2)
 
     buffet.serve(customer_2)
-    expect(buffet.line[:customers].length).to eq(1)
+    expect(buffet.line_report).to eq(1)
 
     buffet.serve(customer_3)
-    expect(buffet.line[:customers].length).to eq(0)
+    expect(buffet.line_report).to eq("No wait time at the buffet, folks!")
  end
 
  xit 'makes the last customer in the line say "Ohp! Let me scootch by ya for the Ranch..." if the line has 4 or more customers when a customer gets served' do
@@ -157,16 +143,14 @@ RSpec.describe Buffet do
       buffet.add_side(BuffetSide.new('Fried Okra'))
       buffet.add_dessert(BuffetDessert.new('Assorted Cookies'))
 
-      buffet.add_customer(customer_1)
-      buffet.add_customer(customer_2)
-      buffet.add_customer(customer_3)
-      buffet.add_customer(customer_4)
-      buffet.add_customer(customer_5)
+      buffet.increase_line(customer_1)
+      buffet.increase_line(customer_2)
+      buffet.increase_line(customer_3)
+      buffet.increase_line(customer_4)
+      buffet.increase_line(customer_5)
 
       buffet.serve(customer_1)
       expect(customer_5.ohp_count).to eq(1)
-      # buffet.serve(customer_2)
-      # expect(customer_5.ohp_count).to eq(2)
   end
 
   xit 'makes the customer who said "Ohp!" drown their plate in Ranch' do
@@ -177,11 +161,11 @@ RSpec.describe Buffet do
     customer_4 = Customer.new('Barb')
     customer_5 = Customer.new('Janet')
 
-    buffet.add_customer(customer_1)
-    buffet.add_customer(customer_2)
-    buffet.add_customer(customer_3)
-    buffet.add_customer(customer_4)
-    buffet.add_customer(customer_5)
+    buffet.increase_line(customer_1)
+    buffet.increase_line(customer_2)
+    buffet.increase_line(customer_3)
+    buffet.increase_line(customer_4)
+    buffet.increase_line(customer_5)
 
     buffet.serve(customer_1)
     expect(customer_5.ohp_count).to eq(1)
@@ -200,20 +184,22 @@ end
     customer_4 = Customer.new('Richey')
     customer_5 = Customer.new('Tim')
     customer_6 = Customer.new('Louann')
-    buffet.add_customer(customer_1)
-    buffet.add_customer(customer_2)
-    buffet.add_customer(customer_3)
-    buffet.add_customer(customer_4)
-    buffet.add_customer(customer_5)
-    buffet.add_customer(customer_6)
-    expect(buffet.line[:customers].length).to eq(6)
+
+    buffet.increase_line(customer_1)
+    buffet.increase_line(customer_2)
+    buffet.increase_line(customer_3)
+    buffet.increase_line(customer_4)
+    buffet.increase_line(customer_5)
+    buffet.increase_line(customer_6)
+
+    expect(buffet.line_report).to eq(6)
 
     buffet.serve(customer_1)
     expect(customer_6.ohp_count).to eq(1)
-    expect(buffet.line[:customers].length).to eq(4)
+    expect(buffet.line_report).to eq(4)
 
     buffet.serve(customer_2)
     expect(customer_5.ohp_count).to eq(1)
-    expect(buffet.line[:customers].length).to eq(2)
+    expect(buffet.line_report).to eq(2)
  end
 end

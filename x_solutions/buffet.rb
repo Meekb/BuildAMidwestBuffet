@@ -3,65 +3,61 @@ class Buffet
                 :dishes,
                 :sides,
                 :desserts,
-                :line
+                :buffet_line
 
     def initialize(name: 'The Buffet Depot')
         @name = name
         @dishes = []
         @sides = []
         @desserts = []
-        @line = {
-            customers: [],
-        }
+        @buffet_line = BuffetLine.new
     end
 
-    def add_customer(customer)
-        @line[:customers] << customer
+    def increase_line(customer)
+        @buffet_line.add_customer(customer)
+    end
+
+    def decrease_line(customer)
+        @buffet_line.remove_customer(customer)
+    end
+
+    def line_report
+        return "No wait time at the buffet, folks!" if @buffet_line.customer_count == 0
+        @buffet_line.customer_count
     end
 
     def add_dish(dish)
         @dishes << dish
-        @dishes.each do |dish|
-            puts dish.inspect
-        end
+        # @dishes.each do |dish|
+        #     puts dish.inspect
+        # end
     end
 
     def add_side(side)
         @sides << side
-        @sides.each do |side|
-            puts side.inspect
-        end
+        # @sides.each do |side|
+        #     puts side.inspect
+        # end
     end
 
     def add_dessert(dessert)
         @desserts << dessert
-        @desserts.each do |dessert|
-            puts dessert.inspect
-        end
-    end
-
-    def line_count
-        return 'There are no customers in the buffet line.' if @line[:customers].empty?
-        @line[:customers].length
-    end
-
-    def inspect
-        @line[:customers].each do |cust|
-            cust.inspect
-        end
+        # @desserts.each do |dessert|
+        #     puts dessert.inspect
+        # end
     end
 
     def serve(cust)
-        if @line[:customers].length >= 4
-            last_in_line = @line[:customers].last
+        if line_report >= 4
+            last_in_line = @buffet_line.last_in_line
+            puts "LAST: #{last_in_line}"
             last_in_line.say_ohp
             last_in_line.drown_plate_in_ranch
-            @line[:customers].delete(last_in_line)
         end
         cust.add_dish(@dishes.shift)
         cust.add_side(@sides.shift)
         cust.add_dessert(@desserts.shift)
-        @line[:customers].delete(cust)
-        inspect
+        decrease_line(cust)
+        @buffet_line.inspect
     end
 end
