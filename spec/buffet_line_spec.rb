@@ -7,7 +7,7 @@ require './lib/buffet_dessert'
 require './lib/customer'
 
 RSpec.describe BuffetLine do
-  it 'keeps track of customers in the buffet line' do
+  it 'keeps track of customers in the line' do
     buffet_line = BuffetLine.new
     expect(buffet_line.line).to be_a(Hash)
     expect(buffet_line.line[:customers]).to be_an(Array)
@@ -36,7 +36,7 @@ RSpec.describe BuffetLine do
       expect(buffet_line.line[:customers].length).to eq(0)
   end
 
-  xit 'can tell how many customers are in the buffet line' do
+  xit 'can tell how many customers are in the line' do
       buffet_line = BuffetLine.new
       customer_1 = Customer.new('LaDonna')
       buffet_line.add_customer(customer_1)
