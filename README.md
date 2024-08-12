@@ -1,9 +1,13 @@
 # Ruby & Ranch: Build a Midwest Buffet
 
-A collection of exercises to practice Ruby, and test-driven design (TDD). The project serves as both a practical example of writing and organizing Ruby tests and as a playful nod to Midwest culture, where buffet lines are a beloved tradition.
+A collection of exercises to practice Ruby, and test-driven design (TDD). The project serves as both a practical example of writing and organizing Ruby tests and as a playful nod to Midwest culture, where buffet lines are a beloved tradition.  
+
+Build the buffet starting with sides, dishes, and desserts. Move along and create customers, then build them a buffet line to stand in. Finally, have the buffet serve the food to customers that are in the buffet line. Find out what happens when a customer says, "Ohp! Let me scootch by ya for the Ranch..."
+
+This test suite is evolving. Additional classes and functionality may be added at any time. Read on to find out how you can [contribute](#contributing).
 
 ## How to Run
-Fork this repo, then clone your forked copy to your machine. 
+Fork this repo, then clone your forked copy to your machine 
 
 `cd` into the directory for the project
 
