@@ -29,4 +29,48 @@ RSpec.describe BuffetDessert do
     expect(dessert_3.name).to eq('Blackberry Cobbler')
     expect(dessert_3.classic_midwest?).to be true
   end
+
+  xit 'starts with a count of 18' do
+    dessert = BuffetDessert.new('Assorted Cookies')
+    expect(dessert.count).to eq(18)
+  end
+ 
+  xit 'can decrease the count' do
+    dessert = BuffetDessert.new('Assorted Cookies')
+    expect(dessert.count).to eq(18)
+
+    dessert.decrease_count
+    expect(dessert.count).to eq(16)
+  end
+
+  xit 'can run out of the dessert' do
+    dessert = BuffetDessert.new('Assorted Cookies')
+    expect(dessert.count).to eq(18)
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    expect(dessert.count).to eq(0)
+  end
+
+  xit 'can be refilled' do
+    dessert = BuffetDessert.new('Assorted Cookies')
+    expect(dessert.count).to eq(18)
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    dessert.decrease_count
+    expect(dessert.count).to eq(0)
+    expect(dessert.refill_dessert).to eq(18)
+  end
 end
