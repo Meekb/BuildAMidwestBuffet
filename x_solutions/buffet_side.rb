@@ -15,10 +15,6 @@ class BuffetSide
       @comfort_food
   end
 
-  def count?
-      @count
-  end
-
   def decrease_count
       @count -= 5
   end

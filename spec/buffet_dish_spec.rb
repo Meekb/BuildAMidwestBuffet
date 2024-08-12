@@ -29,4 +29,42 @@ RSpec.describe BuffetDish do
       expect(dish_2.portion_size).to eq('That\'ll do!')
       expect(dish_3.portion_size).to eq('Heaping')
   end
+
+  xit 'starts with a count of 25' do
+    dish = BuffetDish.new('Chicken Fingers')
+    expect(dish.count).to eq(25)
+  end
+
+  xit 'can decrease the count' do
+    dish = BuffetDish.new('Chicken Fingers')
+    expect(dish.count).to eq(25)
+
+    dish.decrease_count
+    expect(dish.count).to eq(20)
+  end
+
+  xit 'can run out of the dish' do
+    dish = BuffetDish.new('Chicken Fingers')
+    expect(dish.count).to eq(25)
+    dish.decrease_count
+    dish.decrease_count
+    dish.decrease_count
+    dish.decrease_count
+    dish.decrease_count
+    expect(dish.count).to eq(0)
+  end
+
+  xit 'can can be refilled' do
+    dish = BuffetDish.new('Chicken Fingers')
+    expect(dish.count).to eq(25)
+
+    dish.decrease_count
+    dish.decrease_count
+    dish.decrease_count
+    dish.decrease_count
+    dish.decrease_count
+    expect(dish.count).to eq(0)
+
+    expect(dish.refill_dish).to eq(25)
+  end
 end
