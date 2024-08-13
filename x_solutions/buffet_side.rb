@@ -1,12 +1,10 @@
 class BuffetSide
   attr_reader :name,
-              :type,
               :comfort_food,
               :count
 
   def initialize(name, comfort_food: false)
       @name = name
-      @type = 'side'
       @comfort_food = comfort_food
       @count = 20
   end
@@ -15,8 +13,8 @@ class BuffetSide
       @comfort_food
   end
 
-  def decrease_count
-      @count -= 5
+  def decrease_side_count
+      @count = @count - 5
   end
 
   def refill_side
@@ -24,6 +22,6 @@ class BuffetSide
   end
 
   def inspect
-    "<Type: #{type}, Name: #{name}, Comfort Food: #{comfort_food}>"
+    "<Name: #{name}, Comfort Food: #{comfort_food}>"
   end
 end

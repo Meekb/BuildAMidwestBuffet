@@ -13,12 +13,18 @@ class Buffet
         @buffet_line = BuffetLine.new
     end
 
+    def inspect_dishes
+        @dishes.each do |dish|
+            puts "Name: #{dish.name}, Count: #{dish.count}"
+        end
+    end
+
     def increase_line(customer)
         @buffet_line.add_customer(customer)
     end
 
-    def decrease_line(customer)
-        @buffet_line.remove_customer(customer)
+    def decrease_line()
+        @buffet_line.remove_customer
     end
 
     def line_report
@@ -28,36 +34,29 @@ class Buffet
 
     def add_dish(dish)
         @dishes << dish
-        # @dishes.each do |dish|
-        #     puts dish.inspect
-        # end
     end
 
     def add_side(side)
         @sides << side
-        # @sides.each do |side|
-        #     puts side.inspect
-        # end
     end
 
     def add_dessert(dessert)
         @desserts << dessert
-        # @desserts.each do |dessert|
-        #     puts dessert.inspect
-        # end
     end
 
-    def serve(cust)
-        if line_report >= 4
-            last_in_line = @buffet_line.last_in_line
-            last_in_line.say_ohp
-            last_in_line.drown_plate_in_ranch
+    def serve()
+        while @buffet_line.customers.any?
+            if line_report >= 4
+                last_in_line = @buffet_line.last_in_line
+                last_in_line.say_ohp
+                # inspection for final tests
+                last_in_line.inspect
+            end
+            cust = @buffet_line.customers.shift
+            cust.heap_a_helping(@dishes.first)
+            cust.divvy_up(@sides.first)
+            cust.sweeten_the_deal(@desserts.first)
         end
-
-        cust.add_dish(@dishes.shift)
-        cust.add_side(@sides.shift)
-        cust.add_dessert(@desserts.shift)
-        decrease_line(cust)
     end
     
 end
