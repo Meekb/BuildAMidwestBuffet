@@ -22,17 +22,37 @@ RSpec.describe Customer do
     expect(customer.plate[:desserts]).to be_an(Array)
   end
 
-  xit 'can fill their plate with dishes, sides, and desserts' do
+  xit 'can fill a customers plate with dishes, sides, and desserts' do
     customer = Customer.new('Scooter')
 
-    customer.add_dish(BuffetDish.new('Chicken Fingers', portion_size: 'Mound'))
-    customer.add_side(BuffetSide.new('Baked Beans'))
-    customer.add_dessert(BuffetDessert.new('Ice Cream'))
+    customer.heap_a_helping(BuffetDish.new('Chicken Fingers', portion_size: 'Mound'))
+    customer.divvy_up(BuffetSide.new('Baked Beans'))
+    customer.sweeten_the_deal(BuffetDessert.new('Ice Cream'))
 
     expect(customer.plate[:dishes].count).to eq(1)
     expect(customer.plate[:sides].count).to eq(1)
     expect(customer.plate[:desserts].count).to eq(1)
- end
+  end
+
+  xit 'decreases the foods count when it heaps a helping, divvys a side, and sweetens the deal ' do
+    customer = Customer.new('Scooter')
+    dish = BuffetDish.new('Chicken Fingers', portion_size: 'Mound')
+    expect(dish.count).to eq(25)
+
+    side = BuffetSide.new('Vegetable Medley')
+    expect(side.count).to eq(20)
+
+    dessert = BuffetDessert.new('Ice Cream')
+    expect(dessert.count).to eq(18) 
+
+    customer.heap_a_helping(dish)
+    customer.divvy_up(side)
+    customer.sweeten_the_deal(dessert)
+
+    expect(dish.count).to eq(20)
+    expect(side.count).to eq(15)
+    expect(dessert.count).to eq(16)
+  end
 
   xit 'knows if the plate has been drowned in Ranch' do
     customer = Customer.new('Barb')

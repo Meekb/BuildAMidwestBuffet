@@ -7,12 +7,6 @@ RSpec.describe BuffetSide do
     expect(side.name).to eq('Mashed Potatoes')
   end
 
-  xit 'has a type \'side\'  by default' do
-    side = BuffetSide.new('Fried Okra')
-    expect(side.name).to eq('Fried Okra')
-    expect(side.type).to eq('side')
-  end
-
   xit 'can be labeled as a comfort food' do
     side_1 = BuffetSide.new('Southern Baked Mac & Cheese', comfort_food: true)
     side_2 = BuffetSide.new('Fried Ravioli')
