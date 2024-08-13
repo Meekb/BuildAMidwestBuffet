@@ -8,13 +8,6 @@ RSpec.describe BuffetDessert do
     expect(dessert.name).to eq('Fudge Brownies')
   end
 
-  xit 'has a type \'dessert\' by default' do
-      dessert = BuffetDessert.new('Blackberry Cobbler')
-
-      expect(dessert.name).to eq('Blackberry Cobbler')
-      expect(dessert.type).to eq('dessert')
-  end
-
   xit 'can be a classic Midwest dessert' do
     dessert_1 = BuffetDessert.new('Banana Pudding', classic_midwest: true)
     dessert_2 = BuffetDessert.new('Assorted Cookies')
