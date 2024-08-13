@@ -1,30 +1,29 @@
 class BuffetLine
-    attr_reader :line
+    attr_reader :customers
 
     def initialize
-        @line = {
-            customers: [],
-        }
+        @customers = []
     end
-
+    
     def add_customer(customer)
-        @line[:customers] << customer
+        @customers << customer
     end
 
-    def remove_customer(customer)
-        @line[:customers].delete(customer)
+    def remove_customer()
+        @customers.shift
     end
 
     def last_in_line
-        @line[:customers].pop
+        last_cust = @customers.pop
+        return last_cust
     end
 
     def customer_count
-        @line[:customers].length
+        @customers.length
     end
 
     def inspect
-        @line[:customers].each do |cust|
+        @customers.each do |cust|
             cust.inspect
         end
     end

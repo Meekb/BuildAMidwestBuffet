@@ -9,31 +9,30 @@ require './lib/customer'
 RSpec.describe BuffetLine do
   it 'keeps track of customers in the line' do
     buffet_line = BuffetLine.new
-    expect(buffet_line.line).to be_a(Hash)
-    expect(buffet_line.line[:customers]).to be_an(Array)
+    expect(buffet_line.customers).to be_an(Array)
   end
 
-  xit 'can add customers to the line' do
+  xit 'can add customers' do
     buffet_line = BuffetLine.new
     customer_1 = Customer.new('Rita')
     customer_2 = Customer.new('Toni')
     buffet_line.add_customer(customer_1)
-    expect(buffet_line.line[:customers].length).to eq(1)
+    expect(buffet_line.customers.length).to eq(1)
     buffet_line.add_customer(customer_2)
-    expect(buffet_line.line[:customers].length).to eq(2)
+    expect(buffet_line.customers.length).to eq(2)
   end
 
-  xit 'can remove customers from the line' do
+  xit 'can remove customers' do
       buffet_line = BuffetLine.new
       customer_1 = Customer.new('Fred')
       buffet_line.add_customer(customer_1)
       customer_2 = Customer.new('Candi')
       buffet_line.add_customer(customer_2)
-      expect(buffet_line.line[:customers].length).to eq(2)
-      buffet_line.remove_customer(customer_1)
-      expect(buffet_line.line[:customers].length).to eq(1)
-      buffet_line.remove_customer(customer_2)
-      expect(buffet_line.line[:customers].length).to eq(0)
+      expect(buffet_line.customers.length).to eq(2)
+      buffet_line.remove_customer()
+      expect(buffet_line.customers.length).to eq(1)
+      buffet_line.remove_customer()
+      expect(buffet_line.customers.length).to eq(0)
   end
 
   xit 'can tell how many customers are in the line' do
