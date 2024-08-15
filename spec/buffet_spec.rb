@@ -136,7 +136,7 @@ RSpec.describe Buffet do
 
       buffet.add_dish(BuffetDish.new('Meatloaf', portion_size: 'Mound'))
       buffet.add_side(BuffetSide.new('Fried Okra'))
-      buffet.add_dessert(BuffetDessert.new('Assorted Cookies'))
+      buffet.add_dessert(BuffetDessert.new('Jello Salad'))
 
       buffet.increase_line(customer_1)
       buffet.increase_line(customer_2)
@@ -148,7 +148,7 @@ RSpec.describe Buffet do
       expect(customer_5.ohp_count).to eq(1)
   end
 
-  xit 'makes the customer who said "Ohp!" drown their plate in Ranch' do
+  it 'makes the customer who said "Ohp!" drown their plate in Ranch' do
     buffet = Buffet.new(name: 'Bigo Buffet')
     customer_1 = Customer.new('Markie')
     customer_2 = Customer.new('Junior')
@@ -163,8 +163,8 @@ RSpec.describe Buffet do
     buffet.increase_line(customer_5)
 
     buffet.add_dish(BuffetDish.new('Meatloaf', portion_size: 'Mound'))
-    buffet.add_side(BuffetSide.new('Fried Okra'))
-    buffet.add_dessert(BuffetDessert.new('Assorted Cookies'))
+    buffet.add_side(BuffetSide.new('Green Bean Casserole', comfort_food: true))
+    buffet.add_dessert(BuffetDessert.new('Jello Salad'))
 
     buffet.serve()
     expect(customer_5.ohp_count).to eq(1)
