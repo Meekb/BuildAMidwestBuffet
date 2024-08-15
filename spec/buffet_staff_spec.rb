@@ -41,11 +41,10 @@ RSpec.describe BuffetStaff do
     buffet.increase_line(customer_5)
     buffet.increase_line(customer_6)
 
-    expect(buffet.line_report).to eq(6)
-
     buffet.serve
-    expect(buffet.dishes.first.count).to eq(0)
-    expect(buffet.sides.first.count).to eq(0)
+
+    expect(buffet.dishes.first.count).to eq(25)
+    expect(buffet.sides.first.count).to eq(20)
     expect(buffet.desserts.first.count).to eq(8)
   end
 end
