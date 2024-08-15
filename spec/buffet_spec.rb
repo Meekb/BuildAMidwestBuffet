@@ -3,6 +3,7 @@ require './lib/buffet'
 require './lib/buffet_dish'
 require './lib/buffet_line'
 require './lib/buffet_side'
+require './lib/buffet_staff'
 require './lib/buffet_dessert'
 require './lib/customer'
 
@@ -10,6 +11,12 @@ RSpec.describe Buffet do
   it 'has a name' do
     buffet = Buffet.new
     expect(buffet.name).to eq('The Buffet Depot')
+  end
+
+  it 'has a team of 25 to work the buffet' do
+    buffet = Buffet.new
+    expect(buffet.team).to be_an_instance_of(BuffetStaff)
+    expect(buffet.team.crew_count).to eq(25)
   end
 
   xit 'can have a different name' do
