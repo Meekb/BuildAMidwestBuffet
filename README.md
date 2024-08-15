@@ -29,6 +29,7 @@ The classes interact as you progress. Follow the order below to build a solid fo
 * `buffet_dish_spec.rb`
 * `buffet_dessert_spec.rb`
 * `customer_spec.rb`
+* `buffet_staff.rb`
 * `buffet_line.rb`
 * `buffet_spec.rb`
 
