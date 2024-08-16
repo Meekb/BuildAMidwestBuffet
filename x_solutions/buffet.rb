@@ -3,20 +3,16 @@ class Buffet
                 :dishes,
                 :sides,
                 :desserts,
-                :buffet_line
+                :buffet_line,
+                :team
 
-    def initialize(name: 'The Buffet Depot')
+    def initialize(name: 'Bigo Buffet')
         @name = name
+        @team = BuffetStaff.new
         @dishes = []
         @sides = []
         @desserts = []
         @buffet_line = BuffetLine.new
-    end
-
-    def inspect_dishes
-        @dishes.each do |dish|
-            puts "Name: #{dish.name}, Count: #{dish.count}"
-        end
     end
 
     def increase_line(customer)
@@ -28,7 +24,6 @@ class Buffet
     end
 
     def line_report
-        return "No wait time at the buffet, folks!" if @buffet_line.customer_count == 0
         @buffet_line.customer_count
     end
 
@@ -44,18 +39,47 @@ class Buffet
         @desserts << dessert
     end
 
-    def serve()
+    def serve
+        # refill the buffet or last_in_line says ohp
+        if line_report == 0
+           return  "Time to refill the buffet"
+        elsif line_report >= 4
+            last_in_line = @buffet_line.last_in_line
+            last_in_line.say_ohp
+        end
         while @buffet_line.customers.any?
-            if line_report >= 4
-                last_in_line = @buffet_line.last_in_line
-                last_in_line.say_ohp
-                # inspection for final tests
-                last_in_line.inspect
-            end
-            cust = @buffet_line.customers.shift
-            cust.heap_a_helping(@dishes.first)
-            cust.divvy_up(@sides.first)
-            cust.sweeten_the_deal(@desserts.first)
+            # next customer getting served
+            next_cust = @buffet_line.customers.shift
+            
+            # next dish / side / dessert to serve customer
+            dish_to_serve = @dishes.max_by { |dish| dish.count }
+            side_to_serve = @sides.max_by { |side| side.count }
+            dessert_to_serve = @desserts.max_by { |dessert| dessert.count }
+            
+            # customer heaps helping, divvys up side, sweetens the deal
+            next_cust.heap_a_helping(dish_to_serve)
+            next_cust.divvy_up(@sides.first)
+            next_cust.sweeten_the_deal(@desserts.first)
+        end
+        
+    end
+
+    # Debug
+    def inspect_dishes
+        @dishes.each do |dish|
+            puts "Name: #{dish.name}, Count: #{dish.count}"
+        end
+    end
+
+    def inspect_sides
+        @dishes.each do |side|
+            puts "Name: #{side.name}, Count: #{side.count}"
+        end
+    end
+
+    def inspect_desserts
+        @desserts.each do |dessert|
+            puts "Name: #{dessert.name}, Count: #{desserts.count}"
         end
     end
     
