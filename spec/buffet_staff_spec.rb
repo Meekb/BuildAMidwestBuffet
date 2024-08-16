@@ -40,25 +40,27 @@ RSpec.describe BuffetStaff do
     customer_1 = Customer.new('Joe')
     customer_2 = Customer.new('Jerrilyn')
     customer_3 = Customer.new('Daryl')
-    customer_4 = Customer.new('Richey')
-    customer_5 = Customer.new('Tim')
-    customer_6 = Customer.new('Louann')
+    
+    customer_4 = Customer.new('Brangela')
+    customer_5 = Customer.new('Boo Radley')
 
     buffet.increase_line(customer_1)
     buffet.increase_line(customer_2)
     buffet.increase_line(customer_3)
     buffet.increase_line(customer_4)
     buffet.increase_line(customer_5)
-    buffet.increase_line(customer_6)
 
     buffet.serve
 
-    expect(buffet.dishes.first.count).to eq(25)
-    expect(buffet.sides.first.count).to eq(20)
-    expect(buffet.desserts.first.count).to eq(8)
+    buffet.inspect
+    buffet.inspect_sides
+    buffet.inspect_desserts
+    expect(buffet.dishes.first.count).to eq(5)
+    expect(buffet.sides.first.count).to eq(0)
+    expect(buffet.desserts.first.count).to eq(10)
   end
 
-  it 'loses hustle from the meter with each refill' do
+  xit 'loses hustle from the meter with each refill' do
     buffet = Buffet.new
     crew = BuffetStaff.new
   

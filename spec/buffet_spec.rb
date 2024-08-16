@@ -73,7 +73,7 @@ RSpec.describe Buffet do
 
     buffet.buffet_line.remove_customer()
     buffet.buffet_line.remove_customer()
-    expect(buffet.line_report).to eq("No wait time at the buffet, folks!")
+    expect(buffet.line_report).to eq(0)
   end
 
   it 'can increase and decrease the number of customers in the buffet line' do
@@ -87,7 +87,7 @@ RSpec.describe Buffet do
 
     buffet.decrease_line()
     buffet.decrease_line()
-    expect(buffet.line_report).to eq("No wait time at the buffet, folks!")
+    expect(buffet.line_report).to eq(0)
   end
 
   it 'serves all the customers that are in the buffet line' do
@@ -130,7 +130,7 @@ RSpec.describe Buffet do
     expect(buffet.line_report).to eq(3)
 
     buffet.serve()
-    expect(buffet.line_report).to eq("No wait time at the buffet, folks!")
+    expect(buffet.line_report).to eq(0)
  end
 
  it 'makes the last customer in the line say "Ohp! Let me scootch by ya for the Ranch..." if the line has 4 or more customers when a customer gets served' do
